@@ -211,6 +211,7 @@ Xét hàm $L_2$ ta có :
 - $m=3.5\Rightarrow p_1=3, p_2=5\Rightarrow\hspace{2mm}1\nmid 3\text{ và }1\nmid 5$
 
 Có thể thấy, vì điều kiện thứ hai không thỏa mãn nên ta không cần xét điều kiện thứ ba mà có thể kết luận ngay $L_2$ **không đạt chu kỳ đầy đủ**.
+
 Code minh họa : 
 ```python
 class LCG:
@@ -238,13 +239,16 @@ print(ls)
 
 ### LFSR - Linear-Feedback Shift Register
 **LFSR** là viết tắt của **Linear-feedback shift register** (Thanh ghi dịch phản hồi tuyến tính) là một cấu trúc đơn giản dùng để sinh các dãy bits giả ngẫu nhiên dựa trên phép dịch và phép phản hồi tuyến tính. Cụ thể hơn ta có thể phân tích ý nghĩa của tên bộ sinh số này như sau : 
-- **Register** : Nói một cách đơn giản, register là một vùng lưu trữ dễ truy cập mà bộ xử lý (CPU) sử dụng để lưu trữ dữ liệu mà nó cần thao tác. Trong kiến trúc máy tính, các thanh ghi là lựa chọn nhanh nhất để truy xuất dữ liệu. Tuy nhiên, trong bối cảnh LFSR dùng cho mật mã, điều bạn cần biết là register đơn giản chỉ là một vùng lưu trữ (bộ chứa dữ liệu) mà thôi. Ví dụ về một Register : 
+- **Register** : Nói một cách đơn giản, register là một vùng lưu trữ dễ truy cập mà bộ xử lý (CPU) sử dụng để lưu trữ dữ liệu mà nó cần thao tác. Trong kiến trúc máy tính, các thanh ghi là lựa chọn nhanh nhất để truy xuất dữ liệu. Tuy nhiên, trong bối cảnh LFSR dùng cho mật mã, điều bạn cần biết là register đơn giản chỉ là một vùng lưu trữ (bộ chứa dữ liệu) mà thôi. Ví dụ về một Register :
+
 ![image](https://hackmd.io/_uploads/rJxzENDExx.png)
 
 - **Shift** : Tại đây, dãy bit trong thanh ghi sẽ được dịch sang trái hoặc sang phải. Ta có thể giả sử rằng nó dịch sang phải, khi đó bit cuối cùng của thanh ghi sẽ bị “dịch ra ngoài” khỏi thanh ghi và có thể được đưa vào xử lý bởi một tiến trình bên ngoài. Hãy tưởng tượng chúng ta muốn dùng cơ chế này để tạo ra một chuỗi bit ngẫu nhiên (bit stream). Trong ví dụ dưới đây, ta sẽ lần lượt nhận được các giá trị 0, sau đó 1, rồi 0, và cứ tiếp tục như vậy. Trong ví dụ này, ta cũng giả định rằng các vị trí trống ở bên trái sau khi dịch chuyển sẽ được lấp đầy bằng các số 0.
+
 ![image](https://hackmd.io/_uploads/ry31HVw4ge.png)
 
 - **Feedback** : Trong quá trình dịch (Shift) như vậy thì đến một lúc nào đó thanh ghi sẽ chỉ toàn là bit $0$. Khi đó chuỗi bit (bit stream) mà ta thu được cũng chẳng còn gì hấp dẫn nữa. Để khắc phục điều đó ta sẽ thêm vào một cơ chế phản hồi (feedback mechanism). Cụ thể, ta sẽ thực hiện phép XOR một số giá trị trong thanh ghi lại với nhau và dùng kết quả đó làm giá trị đầu vào, thay vì lúc nào cũng nhét số $0$ vào như trước. Trong LFSR, các vị trí trong thanh ghi được chọn để thực hiện phép XOR gọi là **taps** (các điểm gõ hoặc điểm lấy mẫu). Trong ví dụ này, ta sẽ “tapped” (lấy mẫu) bốn bit, tính từ trái sang phải, đó là các bit ở vị trí chỉ số $1,2,4,6$ (với bit bên trái nhất là bit thứ $0$).
+
 ![image](https://hackmd.io/_uploads/SJDCrNPEee.png)
 
 - **Linear** : Bây giờ hãy nói đến phần cuối cùng trong cụm từ LFSR, chính là từ linear (tuyến tính). Thực ra phần này cũng khá đơn giản thôi. Hàm mà chúng ta sử dụng để tạo ra bit thay thế chính là phép XOR. Và như bạn có thể đoán được, phép XOR trên các bit đơn lẻ là một hàm tuyến tính, đó là lý do vì sao chúng ta thêm từ linear vào trước từ feedback trong tên gọi, để mô tả loại phản hồi mà hệ thống đang sử dụng.
@@ -261,7 +265,7 @@ Nhìn chung, chu kỳ tối đa mà một LFSR có thể đạt được là $(2
 
 Một LFSR đạt được chu kỳ tối đa $(2^n - 1)$ được gọi là **Maximal LFSR**, và đây là loại được ưu tiên sử dụng trong các ứng dụng yêu cầu chuỗi bit dài và khó dự đoán hơn.
 
-Code ví dụ : 
+Code ví dụ :
 ```python
 class LFSR:
     def __init__(self, seed):
@@ -308,7 +312,8 @@ Như ta đã biết về cấu trúc của LFSR, phần Feedback sẽ là một 
 
 Trước hết ta có thể hiểu một thanh ghi sẽ có $n$ ô, với mỗi ô có giá trị $s_i\in [0,1]$ và một bộ hệ số $c_i\in [0,1]$ với $i\in [0, n-1]$ 
 
-Một hàm Feedback với phép cộng Modulo $2$ (hay phép XOR) dùng để tính toán giá trị state mới $s_n$ bằng cách sử dụng các state và hệ số trước đó dưới dạng phương trình : 
+Một hàm Feedback với phép cộng Modulo $2$ (hay phép XOR) dùng để tính toán giá trị state mới $s_n$ bằng cách sử dụng các state và hệ số trước đó dưới dạng phương trình :
+
 $$
 s_n\equiv c_0s_0+c_1s_1+...+c_{n-1}s_{n-1}\pmod{2}
 $$
@@ -317,19 +322,22 @@ $$
 \Leftrightarrow s_n=c_0s_0\oplus c_1s_1\oplus ...\oplus c_{n-1}s_{n-1}
 $$
 
-Sau đó, thanh ghi sẽ dịch sang phải (tùy trường hợp nó có thể dịch sang trái) và sẽ thêm giá trị vừa mới tính vào bên trái nhất : 
+Sau đó, thanh ghi sẽ dịch sang phải (tùy trường hợp nó có thể dịch sang trái) và sẽ thêm giá trị vừa mới tính vào bên trái nhất :
+
 $$
 (s_{n-1},s_{n-2},...,s_1,s_0)\rightarrow(s_{n},s_{n-1},...,s_2,s_1)
 $$
 
-Tham khảo ở hình vẽ này : 
+Tham khảo ở hình vẽ này :
+
 ![{7A43D941-8861-40CC-BE93-BEDDFB2F208C}](https://hackmd.io/_uploads/B1qUal3Nxg.png)
 
 
 
 Ở đây ta có một thanh ghi có độ dài là $4$ bits và hãy giả sử ta có một vector state là $(s_3,s_2,s_1,s_0)$ và một vector hệ số là $(c_3,c_2,c_1,c_0)$
 
-Với $s_0$ là output của LFSR sau mỗi lần dịch sang phải, ở bên trái khi này đang trống $1$ bit, ta sẽ tính giá trị state $4$ vào trong đó bằng cách : 
+Với $s_0$ là output của LFSR sau mỗi lần dịch sang phải, ở bên trái khi này đang trống $1$ bit, ta sẽ tính giá trị state $4$ vào trong đó bằng cách :
+
 $$
 s_4\equiv c_3s_3+c_2s_2+c_1s_1+c_0s_0\pmod{2}
 $$
@@ -337,7 +345,8 @@ $$
 
 Có thể nói, các hệ số đó tượng trưng cho việc giá trị tại $s_i$ có tham gia vào quá trình Feedback hay không. Ta có lấy một ví dụ như sau : 
 
-- Cho vector hệ số $(c_3,c_2,c_1,c_0)=(1,1,1,1)$ và vector state ban đầu là $(s_3,s_2,s_1,s_0)=(0,0,0,1)$, ta sẽ tính giá trị tiếp theo $s_4$ như sau : 
+- Cho vector hệ số $(c_3,c_2,c_1,c_0)=(1,1,1,1)$ và vector state ban đầu là $(s_3,s_2,s_1,s_0)=(0,0,0,1)$, ta sẽ tính giá trị tiếp theo $s_4$ như sau :
+
 $$
 s_4\equiv c_3s_3+c_2s_2+c_1s_1+c_0s_0\pmod{2}
 $$
@@ -351,7 +360,8 @@ $$
 $$
 
 - Khi đó, ta có state mới là $(s_4,s_3,s_2,s_1)=(1,0,0,0)$
-- Tiếp tục dựa theo các tính đó, ta có $s_5$ là : 
+- Tiếp tục dựa theo các tính đó, ta có $s_5$ là :
+
 $$
 s_5\equiv c_3s_4+c_2s_3+c_1s_2+c_0s_1\pmod{2}
 $$
@@ -363,21 +373,23 @@ $$
 $$
 \Leftrightarrow s_5\equiv 1\pmod{2}
 $$
+
 - Và có state mới là : $(s_5,s_4,s_3,s_2)=(1,1,0,0)$
 
-Bằng cách tính liên tục theo quy trình như vậy ta sẽ có : 
+Bằng cách tính liên tục theo quy trình như vậy ta sẽ có :
 
 ![{F94015DD-2750-4287-8630-DC9DF8748F0B}](https://hackmd.io/_uploads/SyevW8hElg.png)
 
 
-Như đã nói, đến một lúc nào đó ta sẽ quay trở lại trạng thái ban đầu, như trong ví dụ trên, chu kì của LFSR với state khởi tạo này là $5$. Chí ít thì điều đó nó vẫn còn tốt hơn so với việc state của ta chỉ toàn là $0$. Bởi vì khi đó giá trị tiếp theo của ta sẽ là : 
+Như đã nói, đến một lúc nào đó ta sẽ quay trở lại trạng thái ban đầu, như trong ví dụ trên, chu kì của LFSR với state khởi tạo này là $5$. Chí ít thì điều đó nó vẫn còn tốt hơn so với việc state của ta chỉ toàn là $0$. Bởi vì khi đó giá trị tiếp theo của ta sẽ là :
+
 $$
 s_4\equiv c_3.0+c_2.0+c_1.0+c_0.0\equiv 0\pmod{2}
 $$
 
 Với mỗi thanh ghi có độ dài là $n$, với từng giá trị $s_i\in [0,1]$ thì tổng số trường hợp có thể là $2^n$. Tuy nhiên, trong đó cũng bao gồm luôn trường hợp state toàn là số $0$. Như thế là không được đối với LFSR. Chính vì vậy, một LFSR có thể có tới $2^n-1$ state có thể, với trường hợp toàn là số $0$ đã bị loại trừ.
 
-Hãy đặt một ví dụ khác : Cho vector hệ số $(c_3,c_2,c_1,c_0)=(0,0,1,1)$ và vector state ban đầu là $(s_3,s_2,s_1,s_0)=(0,0,0,1)$, ta sẽ tính giá trị state tiếp theo như sau : 
+Hãy đặt một ví dụ khác : Cho vector hệ số $(c_3,c_2,c_1,c_0)=(0,0,1,1)$ và vector state ban đầu là $(s_3,s_2,s_1,s_0)=(0,0,0,1)$, ta sẽ tính giá trị state tiếp theo như sau :
 
 ![{5B06007D-2849-44DC-A8C9-90828845C0D9}](https://hackmd.io/_uploads/HJKr-83Vlg.png)
 
@@ -386,7 +398,7 @@ Có thể thấy, vẫn sử dụng lại state ban đầu ở ví dụ trên, l
 
 Có thể thấy, chu kì của LFSR $4$-bits này sẽ luôn luôn là $15$ với mọi giá trị state đầu vào bất kì, tất nhiên là trừ trường hợp tất cả bằng $0$. Nói chung, chu kì của một LFSR là một hàm tuyến tính có vector hệ số và vector state khởi tạo
 
-Ở ví dụ đầu tiên, ta có vector hệ số là $(c_3,c_2,c_1,c_0)=(1,1,1,1)$. Với hệ số này, chu kì của LFSR sẽ luôn luôn là $5$ bất kể đầu vào có là gì đi nữa. Minh họa : 
+Ở ví dụ đầu tiên, ta có vector hệ số là $(c_3,c_2,c_1,c_0)=(1,1,1,1)$. Với hệ số này, chu kì của LFSR sẽ luôn luôn là $5$ bất kể đầu vào có là gì đi nữa. Minh họa :
 
 ![{121EBB4B-2D18-4CE5-8A17-7A39500F5EE1}](https://hackmd.io/_uploads/BkEEWIn4xg.png)
 
@@ -398,7 +410,8 @@ Có thể thấy, chu kì của LFSR $4$-bits này sẽ luôn luôn là $15$ v�
 
 Như vậy, dựa vào lý thuyết về các hệ số và giá trị state như ở trên, ta sẽ rút ra được một định nghĩa về Đa thức đặc trưng (Characteristic Polynomial) như sau : 
 
-- **Định nghĩa** về **Đa thức đặc trưng** (Characteristic Polynomial) : Cho thanh ghi có độ dài $n$ bits, được sắp xếp theo thứ tự : $s_{n-1}s_{n-2}...s_1s_0$ cùng với đó là vector hệ số $(c_{n-1},c_{n-2},...,c_1,c_0)$. Khi đó, đa thức đặc trưng bậc $n$ là : 
+- **Định nghĩa** về **Đa thức đặc trưng** (Characteristic Polynomial) : Cho thanh ghi có độ dài $n$ bits, được sắp xếp theo thứ tự : $s_{n-1}s_{n-2}...s_1s_0$ cùng với đó là vector hệ số $(c_{n-1},c_{n-2},...,c_1,c_0)$. Khi đó, đa thức đặc trưng bậc $n$ là :
+
 $$
 c(x)=x^n+c_{n−1}x^{n−1}+c_{n−2}x^{n−2}+···+c_1x+c_0
 $$
@@ -414,7 +427,8 @@ Các hệ số luôn thuộc $[0,1]$, hay nói theo nghĩa khác, các đa thứ
 Ta cũng sẽ tìm hiểu thêm về một trong các tính chất đặc biệt của các đa thức dạng như này : 
 - **Định nghĩa** : Một đa thức được gọi là **khả quy** nếu như nó có thể phân tích được thành tích của các đa thức có bậc nhỏ hơn.
 
-Ví dụ về một số đa thức khả quy như : 
+Ví dụ về một số đa thức khả quy như :
+
 $$
 x^2=x.x
 $$
@@ -427,7 +441,8 @@ $$
 x^2+1=(x+1).(x+1)
 $$
 
-Lưu ý rằng : Ta đang phân tích các đa thức với các hệ số thuộc trường hữu hạn $\mathbb{F}_2$, thế nên các phép toán đa thức với nhau đều sẽ thuộc trong trường hữu hạn này. Ví dụ ta có $1+1=0$ thì $x+x=0$. Như vậy, sở dĩ đa thức $x^2+1=(x+1).(x+1)$ là bởi vì : 
+Lưu ý rằng : Ta đang phân tích các đa thức với các hệ số thuộc trường hữu hạn $\mathbb{F}_2$, thế nên các phép toán đa thức với nhau đều sẽ thuộc trong trường hữu hạn này. Ví dụ ta có $1+1=0$ thì $x+x=0$. Như vậy, sở dĩ đa thức $x^2+1=(x+1).(x+1)$ là bởi vì :
+
 $$
 (x+1)(x+1)=x^2+x+x+1=x^2+1
 $$
@@ -441,7 +456,8 @@ Ví dụ :
 Và từ định nghĩa về các đa thức bất khả quy trên, ta có được một định lý như sau : 
 >Nếu đa thức đặc trưng của một LFSR $n$-bits là đa thức khả quy thì chu kì của LFSR đó sẽ không thể đạt được số lượng tối đa, tức không thể bằng $2^n-1$
 
-Ví dụ : Xét một LFSR $3$-bits có vector hệ số là $(c_2,c_1,c_0)=(1,1,1)$. Khi đó đa thức đặc trưng sẽ là : $c(x)=x^3+x^2+x+1$. Đa thức này là một đa thức khả quy khi mà : 
+Ví dụ : Xét một LFSR $3$-bits có vector hệ số là $(c_2,c_1,c_0)=(1,1,1)$. Khi đó đa thức đặc trưng sẽ là : $c(x)=x^3+x^2+x+1$. Đa thức này là một đa thức khả quy khi mà :
+
 $$
 x^3+x^2+x+1=x^2.(x+1)+(x+1)=(x+1)(x^2+1)
 $$
