@@ -440,8 +440,8 @@ $$
 - Trái với các đa thức trên, một đa thức **không thể** phân tích được thành tích các đa thức có bậc bé hơn gọi là **đa thức bất khả quy**.
 
 Ví dụ : 
-![{D423E332-7BC3-45AD-AC4C-56A312C71088}](https://hackmd.io/_uploads/B1wCIL34xl.png)
 
+<img width="1462" height="650" alt="{C9E39FAC-D6E6-45E0-87C3-63D9673D9926}" src="https://github.com/user-attachments/assets/2e6076b0-b3e4-484a-a8be-80a84ecb94c5" />
 
 Và từ định nghĩa về các đa thức bất khả quy trên, ta có được một định lý như sau : 
 >Nếu đa thức đặc trưng của một LFSR $n$-bits là đa thức khả quy thì chu kì của LFSR đó sẽ không thể đạt được số lượng tối đa, tức không thể bằng $2^n-1$
@@ -452,8 +452,9 @@ $$
 x^3+x^2+x+1=x^2.(x+1)+(x+1)=(x+1)(x^2+1)
 $$
 
-Do đó chu kì của LFSR này sẽ không đạt tối đa. Đây là sơ đồ hoạt động của nó với mọi state khởi tạo bất kì : 
-![{B2E12E05-D960-43B2-B7EA-24D7F1E476BC}](https://hackmd.io/_uploads/BkrKdLnNgx.png)
+Do đó chu kì của LFSR này sẽ không đạt tối đa. Đây là sơ đồ hoạt động của nó với mọi state khởi tạo bất kì :
+
+<img width="954" height="480" alt="{2A4F62D3-FAAA-490B-981A-BF22C745F21A}" src="https://github.com/user-attachments/assets/dc769549-a983-4998-98b1-24848faf187c" />
 
 Có thể nói, đối với các nhà toán học và các nhà khoa học máy tính, đa thức bất khả quy là rất quan trọng trong việc khai thác và xây dựng nên trường mở rộng, hay cụ thể hơn trong phần này ta sẽ bàn về trường nhị phân mở rộng ($\mathbb{F}_2$ extension field hay $GF(2^k)$). 
 
@@ -468,12 +469,9 @@ Thật may mắn, chúng ta đã có một định nghĩa mới, hay nó đúng 
 
 Vậy đa thức nguyên thủy là gì? Nói một cách dễ hiểu, đa thức bất khả quy $p(x)$ bậc $n$ trên trường hữu hạn $GF(2)$ được gọi là **đa thức nguyên thủy** nếu tồn tại một số nguyên $e$ nhỏ nhất sao cho $x^e-1$ chia hết cho $p(x)$ với $e=2^n-1$.
 
+Ví dụ về một số đa thức nguyên thủy :
 
-
-
-Ví dụ về một số đa thức nguyên thủy : 
-![{5B8D5D69-C3D7-4ECE-AC4E-AEA543CE4F5C}](https://hackmd.io/_uploads/r1si0Pn4ex.png)
-
+<img width="1478" height="635" alt="{37E07E85-FE76-4786-A0C6-C411C8B82D57}" src="https://github.com/user-attachments/assets/573f9bd5-196c-440e-8ed2-4b5747fee90b" />
 
 Về cơ bản mà nói : 
 - LFSR thường được triển khai bằng phần cứng do tính đơn giản và chi phí thấp của nó. Ví dụ, một LFSR $100$-bits chỉ cần vài trăm bóng bán dẫn là đủ.
@@ -487,29 +485,9 @@ Câu trả lời là có, và đó chính là **Thuật toán Berlekamp-Massey**
 
 Dưới đây là bảng của một số đa thức đặc trưng sẽ giúp cho LFSR có độ dài $n$ bits đạt được chu kì tối đa ($2^n-1$) :
 
-
-
 ![{A80ACC8B-F1DE-49A9-BD41-65806F8894E2}](https://hackmd.io/_uploads/BkmU70KNee.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+---
 
 ### Dual_EC_DRBG - Dual Elliptic Curve Deterministic Random Bit Generator
 **Dual_EC_DRBG** là viết tắt của **Dual Elliptic Curve Deterministic Random Bit Generator** (Bộ sinh số giả ngẫu nhiên dựa trên đường cong elliptic kép) là một trong bốn thuật toán sinh số ngẫu nhiên xác định (DRBG) được đưa vào **[NIST SP 800-90A](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-90a.pdf)** công bố năm 2006. 
@@ -518,13 +496,15 @@ Thuật toán này dựa trên phép toán nhân điểm trên đường cong el
 
 Cụ thể ta có thuật toán như sau : 
 - **Dual_EC_DRBG** dạng cơ bản sử dụng đường cong **[P-256](https://neuromancer.sk/std/nist/P-256)** làm tiêu chuẩn sinh số.
-- Về cơ bản, thuật toán sinh số của Dual_EC_DRBG giống như trong sơ đồ sinh số tổng quát như ở trên, cụ thể hơn ta có định nghĩa hai hàm $f(x)$ và $g(x)$ như sau : Cho $P,Q$ là hai điểm bất kì thuộc đường cong **P-256**, khi đó ta có : 
+- Về cơ bản, thuật toán sinh số của Dual_EC_DRBG giống như trong sơ đồ sinh số tổng quát như ở trên, cụ thể hơn ta có định nghĩa hai hàm $f(x)$ và $g(x)$ như sau : Cho $P,Q$ là hai điểm bất kì thuộc đường cong **P-256**, khi đó ta có :
+
 $$
 \begin{cases}
 s_{i}=f(s_{i-1})=s_{i-1}.P\\
 r_i=g(s_i)=s_i.Q
 \end{cases}
 $$
+
 - Lúc này, $s_i$ và $r_i$ sẽ là tọa độ $x$ của phép nhân điểm của một số với điểm $P$ và $Q$.
 - Giá trị của $r_i$ sẽ có độ dài là $256$ bits. Ta sẽ loại bỏ đi $16$ bits đầu, chỉ giữ lại $240$ bits cuối. Khi đó ta đã có được số giả ngẫu nhiên rồi.
  
@@ -542,10 +522,12 @@ Về bản chất : Ai biết $k$ sẽ nắm quyền kiểm soát bộ sinh, cò
 - Cuối cùng, năm 2014, NIST khuyến cáo **[ngừng sử dụng Dual_EC_DRBG](https://thehackernews.com/2014/04/nist-removes-dualecdrbg-random-number.html#:~:text=In%20response%20to%20the%20accusations%20on%20NSA%20and,Random%20Bit%20Generators%20%28NIST%20Special%20Publication%20800-90A%2C%20Rev.1%29.)**.
 
 Ngoài phiên bản Dual_EC_DRBG cơ bản trên, ta còn có một số phiên bản khác như : 
-- **Dual_EC_DRBG 2006** : 
+- **Dual_EC_DRBG 2006** :
+
 ![{F382A683-AD69-4031-B7B5-C0BB01E30686}](https://hackmd.io/_uploads/r13GxXvVll.png)
 
 - **Dual_EC_DRBG 2007** :
+
 ![{139FDEDF-921E-4FFF-8C9F-E0D0E7264FBE}](https://hackmd.io/_uploads/SJrExXPVle.png)
 >**adin** là additional input, là một chuỗi ngẫu nhiên do người dùng nhập vào, sau đó sẽ được đem vào hàm băm $H(x)$ để tạo ra các state $s_i$ mới ngẫu nhiên hơn.
 
