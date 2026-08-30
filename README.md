@@ -2,7 +2,7 @@
 <h1>Random Number Generator (RNG)</h1>
 </div>
 
-Bản chất của tính ngẫu nhiên từ lâu đã gây trăn trở cho các triết gia, những nhà khoa học, các nhà thống kê và cả những người bình thường. Trong nhiều năm qua, con người đã đưa ra những câu trả lời khác nhau cho câu hỏi : **Dữ liệu như thế nào thì được xem là ngẫu nhiên, và bản chất của xác suất là gì??** 
+Bản chất của tính ngẫu nhiên từ lâu đã gây trăn trở cho các triết gia, những nhà khoa học, các nhà thống kê và cả những người bình thường. Trong nhiều năm qua, con người đã đưa ra những câu trả lời khác nhau cho câu hỏi : **Dữ liệu như thế nào thì được xem là ngẫu nhiên, và bản chất của xác suất là gì???** 
 
 Chuyển động của các hành tinh ban đầu trông có vẻ ngẫu nhiên và tùy tiện, nhưng rồi các nhà thiên văn học đầu tiên đã phát hiện ra trật tự và có thể đưa ra dự đoán về chúng. Tương tự như vậy, chúng ta đã đạt được những tiến bộ lớn trong việc dự đoán thời tiết và rất có thể sẽ tiếp tục tiến bộ hơn nữa.
 
@@ -11,13 +11,11 @@ Vì vậy, mặc dù ngày nay có vẻ như việc trời có mưa hay không t
 Có thể tưởng tượng rằng vào một thời điểm nào đó, ai đó sẽ khám phá ra một hàm số $f$ nào đó sao cho : **Dựa vào kết quả của 100 lần tung đầu tiên bởi một người cụ thể, có thể dự đoán được giá trị của lần tung thứ 101 một cách chính xác.**
 
 Trong tất cả các ví dụ trên, dù là chuyển động của hành tinh, thời tiết hay tung đồng xu – không thay đổi, chỉ có khả năng dự đoán của con người thay đổi. Vì vậy, ở một mức độ lớn, tính ngẫu nhiên là một hàm của người quan sát, hay nói cách khác :
-<div style="background-color: #E7F3FF; padding: 10px; border-radius: 5px;">
-<span style="color: #007bff;">Khi một đại lượng quá khó để tính toán, ta có thể coi nó là ngẫu nhiên về mặt thực tiễn.</span>
-</div>
+>Khi một đại lượng quá khó để tính toán, ta có thể coi nó là ngẫu nhiên về mặt thực tiễn.</span>
 
 ---
 
-Bây giờ, chúng ta sẽ thử bàn về vấn đề ngẫu nhiên trong việc sinh ra một con số tự nhiên nào đó để có thể thấy được những điều thú vị của chúng. 
+Bây giờ, chúng ta sẽ bàn về vấn đề ngẫu nhiên trong việc sinh ra một con số tự nhiên nào đó để có thể thấy được những điều thú vị của chúng. 
 
 # RNG
 **RNG** là viết tắt của **Random Number Generator**, nghĩa là bộ sinh số ngẫu nhiên. Nó dùng để tạo ra một dãy số không thể đoán trước, không có quy luật. Các số trong dãy số đó có thể được dùng cho nhiều mục đích khác nhau, phổ biến nhất là dùng để sinh khóa cho các hệ mật như : RSA, AES, ECC,...
@@ -40,11 +38,10 @@ Như vậy ta chỉ còn lại số $7$. Đến đây có một câu hỏi đư�
 Tính chất làm cho một con số trở nên ngẫu nhiên không nằm ở chính con số đó mà nằm ở chuỗi số chứa nó. Không hề có con số đơn lẻ nào là ngẫu nhiên cả. Ví dụ, số $1$, nếu như nó  chỉ là một lựa chọn duy nhất thì nó chẳng có gì là ngẫu nhiên cả. Nhưng nếu như ta thêm vào đó các số như : $5,2,8,7,4$ thì số $1$ khi này nó là một phần ngẫu nhiên của chuỗi đó. 
 
 Như vậy có thể nói : 
-<div style="background-color: #E7F3FF; padding: 10px; border-radius: 5px;">
-<span style="color: #007bff;">Một con số sẽ trông ngẫu nhiên khi được đặt trong một dãy không có quy luật rõ ràng.</span>
-</div>
+>Một con số sẽ trông ngẫu nhiên khi được đặt trong một dãy không có quy luật rõ ràng.</span>
 
 ---
+
 Một điều chắc chắn rằng : Khi tôi yêu cầu bạn chọn ra một số ngẫu nhiên, bạn sẽ có thể gần như trả lời được. Đó không phải là một việc gì khó cả. Tuy nhiên, đối với máy tính thì đó lại là một câu chuyện khác. 
 
 
@@ -76,32 +73,30 @@ Nhưng nếu đúng là như vậy, làm sao vẫn có thể tồn tại cơ ch�
 
 
 ## PRNG
-**PRNG** là viết tắt của **Pseudo-Random Number Generator** - Bộ sinh số giả ngẫu nhiên. Gần giống với TRNG, thế nhưng PRNG sẽ sinh ra các số trông có vẻ ngẫu nhiên, nhưng thực chất là xác định (deterministic), được tạo ra từ một thuật toán và một giá trị khởi tạo gọi là seed.
+**PRNG** là viết tắt của **Pseudo-Random Number Generator** - Bộ sinh số giả ngẫu nhiên. Gần giống với TRNG, thế nhưng PRNG sẽ sinh ra các số trông có vẻ ngẫu nhiên, nhưng thực chất là xác định (deterministic), được tạo ra từ một thuật toán và một giá trị khởi tạo gọi là `seed`.
 
 Chúng ta phải tạo ra một chuỗi số mà trông nó có vẻ ngẫu nhiên đối với chúng ta. Nhưng suy cho cùng chúng không phải là ngẫu nhiên. Đó chính là công việc của PRNG.
 
 Về cơ chế của một PRNG, ta có cấu trúc tổng quát chung về nó như sau : 
-- Để có thể tạo ra một số nào đó ngẫu nhiên, ta sẽ thiết lập một bộ sinh số dựa theo cấu trúc chính đó là : Từ một số ban đầu, gọi là **seed**, ta sẽ sinh ra một số mới dựa trên **seed** đó thông qua một hàm tuyến tính $f$ nào đó. Hay ta có công thức tổng quát như sau : 
+- Để có thể tạo ra một số nào đó ngẫu nhiên, ta sẽ thiết lập một bộ sinh số dựa theo cấu trúc chính đó là : Từ một số ban đầu, gọi là **seed**, ta sẽ sinh ra một số mới dựa trên **seed** đó thông qua một hàm tuyến tính $f$ nào đó. Hay ta có công thức tổng quát như sau:
+
 $$
-\text{Random_Number}=f(seed)
+\text{Random\ Number}=f(seed)
 $$
+
 - Với một số ngẫu nhiên mới sinh ra, ta đều mong muốn đầu vào của nó luôn được thay đổi, bởi lẽ hàm $f$ là một hàm tuyến tính xác định, nó chỉ cho ra một giá trị **xác định duy nhất** với mỗi giá trị đầu vào.
 - Giả sử ta có một giá trị khởi tạo ban đầu là : $s_0$ 
 - Giá trị được gọi là **seed**, đó là giá trị hoàn toàn ngẫu nhiên, có thể là do bạn tự nghĩ ra hoặc ai đó chọn, không sao cả. Bây giờ, ta sẽ dùng giá trị ban đầu đó mà tạo ra được một chuỗi số trông có vẻ như là ngẫu nhiên.
 - Ta sẽ định nghĩa hai hàm $f(x)$ và $g(x)$ như sau : 
-    - Với $f(x)$ : Ta xem đó như là một hàm để sinh ra trạng thái tiếp theo của một PRNG, hay nói đúng hơn là hàm sinh ra đầu vào tiếp theo của một PRNG. Khi đó ta có công thức sau : 
-$$
-s_{n+1}=f(s_n)
-$$
-    - Với $g(x)$ : Hàm này sẽ nhận vào một giá trị xác định $s$ làm đầu vào để từ đó sinh ra một giá trị xác định $r$ và dùng nó cho các hoạt động bảo mật. Công thức như sau : 
-$$
-r_i=g(s_i)
-$$
+    - Với $f(x)$ : Ta xem đó như là một hàm để sinh ra trạng thái tiếp theo của một PRNG, hay nói đúng hơn là hàm sinh ra đầu vào tiếp theo của một PRNG. Khi đó ta có công thức sau : $$s_{n+1}=f(s_n)$$
+    - Với $g(x)$ : Hàm này sẽ nhận vào một giá trị xác định $s$ làm đầu vào để từ đó sinh ra một giá trị xác định $r$ và dùng nó cho các hoạt động bảo mật. Công thức như sau : $$r_i=g(s_i)$$
+
 - Hai hàm $f(x)$ và $g(x)$ đều được thiết kế tùy theo mong muốn của người tạo ra nó. Điều quan trọng nhất của việc thiết kế các hàm này là chúng phải là hàm một chiều, tức nếu như kẻ tấn công biết được cấu trúc của $f(x)$ và $g(x)$ thì việc đảo ngược chúng sẽ rất khó khăn, hoặc thậm chí là không thể, và thứ hai là không được để lộ **“cửa sau” (backdoor)**, tức nó cho phép kẻ thứ ba can thiệp vào dữ liệu nhạy cảm mà người dùng không cho phép.
 
 - Như vậy, với mỗi đầu vào $s_i$ khác nhau, ta sẽ sinh ra được các số ngẫu nhiên $r_i$ mà khi nhìn vào ta đều sẽ khó đoán được quy luật của chúng. 
 
-Sơ đồ tổng quát của một PRNG như sau : 
+Sơ đồ tổng quát của một PRNG như sau :
+
 ![{4047A127-CC22-4A7E-873B-63A80413C6AF}](https://hackmd.io/_uploads/rkWbfew4gg.png)
 
 
