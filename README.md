@@ -107,25 +107,31 @@ Hãy thử giả sử như này :
 - Tiếp theo, vì đã nhân nên ta có thể thêm vào đó một phép toán cộng với một số nào đó (tất nhiên có thể là trừ nhưng bản chất của phép trừ một số chính là cộng số đối của chính số đó). Ta gọi số cộng thêm là $c$. Đến đây nó vẫn chưa được gọi là ngẫu nhiên.
 - Và cuối cùng, ta sẽ đem con số mà ta vừa mới tính được là $aX_0+c$ đem đi lấy phần dư cho một con số $m$ nào đó. Hay nói đúng hơn ta sẽ có một con số cuối cùng là $(aX_0+c)$ % $m$.
 - Chúng ta đã tạo ra cho mình một con số trông có vẻ là ngẫu nhiên, tuy nhiên nó vẫn còn thiếu một thứ. Như đã nói, một con số sẽ trông ngẫu nhiên khi được đặt trong một dãy không có quy luật rõ ràng. Thứ chúng ta thiếu ở đây chính là những con số khác. Vậy thì ta phải làm sao? 
-- Đơn giản, ta đặt : 
+- Đơn giản, ta đặt :
+
 $$
-X_1=(aX_0+c)\text{ % }m
-$$ 
-Khi này để tính được giá trị tiếp theo, ta chỉ cần thay thế $X_1$ vào vị trí của $X_0$ thì khi đó ta sẽ có : 
+X_1=(aX_0+c)\hspace{1mm} \\% \hspace{1mm}m
 $$
-X_2=(aX_1+c)\text{ % }m
-$$ 
-Cứ như thế, ta sẽ rút ra được công thức tổng quát cho chuỗi số như sau : 
+
+- Khi này để tính được giá trị tiếp theo, ta chỉ cần thay thế $X_1$ vào vị trí của $X_0$ thì khi đó ta sẽ có :
+
 $$
-X_{n+1}=(aX_{n}+c)\text{ % }m
+X_2=(aX_1+c)\hspace{1mm} \\% \hspace{1mm}m
 $$ 
 
-- Đó chính là ví dụ cơ bản của một PRNG, hay nói chính xác hơn, đó là **LCG - Linear Congruential Generator** (Bộ sinh số giả ngẫu nhiên tuyến tính theo đồng dư) mà ta sẽ nói rõ ở phần sau. 
+- Cứ như thế, ta sẽ rút ra được công thức tổng quát cho chuỗi số như sau :
 
-- Có thể nói, dựa theo công thức truy hồi như trên, ta đã phần nào hiểu được vai trò của phép Modulo $m$ là giữ cho bộ số sinh ra đều nằm dưới $m$. Nếu không có phép tính đó thì các con số về sau sinh ra sẽ ngày càng lớn bởi lẽ khi này, bộ sinh số của ta sẽ là hàm tuyến tính bậc nhất có xu hướng đi lên dạng $y=ax+b,\hspace{2mm}a>0$.
-- Thế nhưng, Modulo $m$ cũng chính là lý do lớn nhất để ta gọi chúng là giả ngẫu nhiên (Pseudo-Random). Bởi vì đến một lúc nào đó, dù sớm hay muộn, chúng sẽ sinh lại các con số đã sinh trước đó. Và cứ như thế, một vòng lặp sẽ diễn ra. Ví dụ cơ bản nhất là khi ta có một LCG có dạng : $X_{n+1}=(2X_{n}+2)\text{ % }8$.
-- Với $X_0=1$ thì ta có $X_1=4$, $X_2=2$, $X_3=6$, $X_4=6$, $X_5=6$,... Hàm sinh số này sẽ luôn bị kẹt mãi ở số $6$, khiến cho nó trở nên không còn là ngẫu nhiên trong mắt chúng ta nữa.
+$$
+X_{n+1}=(aX_{n}+c)\hspace{1mm} \\% \hspace{1mm}m
+$$ 
 
+Đó chính là ví dụ cơ bản của một PRNG, hay nói chính xác hơn, đó là **LCG - Linear Congruential Generator** (Bộ sinh số giả ngẫu nhiên tuyến tính theo đồng dư) mà ta sẽ nói rõ ở phần sau. 
+
+Có thể nói, dựa theo công thức truy hồi như trên, ta đã phần nào hiểu được vai trò của phép Modulo $m$ là giữ cho bộ số sinh ra đều nằm dưới $m$. Nếu không có phép tính đó thì các con số về sau sinh ra sẽ ngày càng lớn bởi lẽ khi này, bộ sinh số của ta sẽ là hàm tuyến tính bậc nhất có xu hướng đi lên dạng $y=ax+b,\hspace{2mm}a>0$.
+
+Thế nhưng, Modulo $m$ cũng chính là lý do lớn nhất để ta gọi chúng là giả ngẫu nhiên (Pseudo-Random). Bởi vì đến một lúc nào đó, dù sớm hay muộn, chúng sẽ sinh lại các con số đã sinh trước đó. Và cứ như thế, một vòng lặp sẽ diễn ra. Ví dụ cơ bản nhất là khi ta có một LCG có dạng : $X_{n+1}=(2X_{n}+2)\hspace{1mm} \\% \hspace{1mm}8$.
+
+Với $X_0=1$ thì ta có $X_1=4$, $X_2=2$, $X_3=6$, $X_4=6$, $X_5=6$,... Hàm sinh số này sẽ luôn bị kẹt mãi ở số $6$, khiến cho nó trở nên không còn là ngẫu nhiên trong mắt chúng ta nữa.
 
 Cũng bởi chính vì các ví dụ minh họa như trên, ta gọi các con số như trên là các con số giả ngẫu nhiên được sinh ra từ một PRNG bởi vì chúng trông giống như ngẫu nhiên nhưng chúng không thật sự ngẫu nhiên. Và đó chính là minh chứng cụ thể cho tính **Determinism (tính tất định)** mà ta đã nói ở trên.
 
@@ -136,9 +142,10 @@ Còn bây giờ ta sẽ tìm hiểu về một số PRNG phổ biến trong đ�
 ### LCG - Linear Congruential Generator
 **Linear Congruential Generator** là một thuật toán PRNG (pseudo-random number generator) — sinh ra dãy số có vẻ ngẫu nhiên bằng cách dùng phép toán đồng dư tuyến tính.
 
-Công thức của LCG là : 
+Công thức của LCG là :
+
 $$
-X_{n+1}=(aX_{n}+c)\text{ % }m
+X_{n+1}=(aX_{n}+c)\hspace{1mm} \\% \hspace{1mm}m
 $$
 
 Trong đó : 
@@ -151,16 +158,17 @@ Một giá trị ban đầu là $X_0$ sẽ được gọi là **seed** của b�
 Việc chọn các tham số cho LCG là rất quan trọng vì chúng sẽ ảnh hưởng tới chu kì sinh số của LCG. Chọn không cẩn thận sẽ khiến cho LCG sinh số bị sai hoặc không đầy đủ như ví dụ trên. Để khắc phục và đảm bảo cho LCG hoạt động hiệu quả nhất, **định lý Hull–Dobell** đã ra đời để thực hiện điều đó.
 
 Cụ thể, định lý phát biểu như sau : 
-> Để LCG đạt chu kỳ đầy đủ $=m$ (tức là sinh ra tất cả các số từ $0$ đến $m−1$, không trùng lặp sớm) nếu và chỉ nếu $3$ điều kiện sau đều đúng : 
+> Để LCG đạt chu kỳ đầy đủ $=m$ (tức là sinh ra tất cả các số từ $0$ đến $m−1$, không trùng lặp sớm) nếu và chỉ nếu $3$ điều kiện sau đều đúng: 
 > - $gcd(c,m)=1$.
 > - Với mỗi $p$ là ước số nguyên tố của $m$ thì $(a-1)$ chia hết cho $p$.
 > - Nếu $m$ chia hết cho $4$ thì $(a-1)$ cũng chia hết cho $4$.
 
-Ví dụ : Ta xét hai hàm sinh số LCG $L_1$ và $L_2$ như sau : 
+Ví dụ : Ta xét hai hàm sinh số LCG $L_1$ và $L_2$ như sau :
+
 $$
 \begin{cases}
-L_1:X_{n+1}=(5X_{n}+5)\text{ % }16\\
-L_2:X_{n+1}=(2X_{n}+2)\text{ % }15
+L_1:X_{n+1}=(5X_{n}+5)\hspace{1mm} \\% \hspace{1mm}16\\
+L_2:X_{n+1}=(2X_{n}+2)\hspace{1mm} \\% \hspace{1mm}15
 \end{cases}
 $$
 
@@ -170,6 +178,7 @@ Xét hàm $L_1$ ta có :
 - $16\hspace{2mm}\vdots\hspace{2mm} 4$ và $4\hspace{2mm}\vdots\hspace{2mm} 4$
 
 Như vậy có thể nói : $L_1$ **đạt chu kỳ đầy đủ**
+
 Code minh họa : 
 ```python
 class LCG:
