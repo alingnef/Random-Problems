@@ -330,9 +330,7 @@ $$
 
 Tham khảo ở hình vẽ này :
 
-![{7A43D941-8861-40CC-BE93-BEDDFB2F208C}](https://hackmd.io/_uploads/B1qUal3Nxg.png)
-
-
+<img width="1407" height="569" alt="{7851CE29-F103-47A2-8470-897251F62EF7}" src="https://github.com/user-attachments/assets/ab183f16-194d-4bd4-9ac0-f6f0390b4643" />
 
 Ở đây ta có một thanh ghi có độ dài là $4$ bits và hãy giả sử ta có một vector state là $(s_3,s_2,s_1,s_0)$ và một vector hệ số là $(c_3,c_2,c_1,c_0)$
 
@@ -378,8 +376,7 @@ $$
 
 Bằng cách tính liên tục theo quy trình như vậy ta sẽ có :
 
-![{F94015DD-2750-4287-8630-DC9DF8748F0B}](https://hackmd.io/_uploads/SyevW8hElg.png)
-
+<img width="1364" height="461" alt="{A9BCCFB7-7CE9-4CBD-B55F-48CD14C50E8B}" src="https://github.com/user-attachments/assets/d4a34c28-e89f-4388-8a33-40f41f754fdd" />
 
 Như đã nói, đến một lúc nào đó ta sẽ quay trở lại trạng thái ban đầu, như trong ví dụ trên, chu kì của LFSR với state khởi tạo này là $5$. Chí ít thì điều đó nó vẫn còn tốt hơn so với việc state của ta chỉ toàn là $0$. Bởi vì khi đó giá trị tiếp theo của ta sẽ là :
 
@@ -387,12 +384,11 @@ $$
 s_4\equiv c_3.0+c_2.0+c_1.0+c_0.0\equiv 0\pmod{2}
 $$
 
-Với mỗi thanh ghi có độ dài là $n$, với từng giá trị $s_i\in [0,1]$ thì tổng số trường hợp có thể là $2^n$. Tuy nhiên, trong đó cũng bao gồm luôn trường hợp state toàn là số $0$. Như thế là không được đối với LFSR. Chính vì vậy, một LFSR có thể có tới $2^n-1$ state có thể, với trường hợp toàn là số $0$ đã bị loại trừ.
+Với mỗi thanh ghi có độ dài là $n$, với từng giá trị $s_i\in [0,1]$ thì tổng số trường hợp có thể xảy ra là $2^n$. Tuy nhiên, trong đó cũng bao gồm luôn trường hợp state toàn là số $0$. Như thế là không được đối với LFSR. Chính vì vậy, một LFSR có thể có tới $2^n-1$ state có thể, với trường hợp toàn là số $0$ đã bị loại trừ.
 
 Hãy đặt một ví dụ khác : Cho vector hệ số $(c_3,c_2,c_1,c_0)=(0,0,1,1)$ và vector state ban đầu là $(s_3,s_2,s_1,s_0)=(0,0,0,1)$, ta sẽ tính giá trị state tiếp theo như sau :
 
-![{5B06007D-2849-44DC-A8C9-90828845C0D9}](https://hackmd.io/_uploads/HJKr-83Vlg.png)
-
+<img width="960" height="875" alt="{43BC13BF-7B26-47E3-8643-2FCB7D121F07}" src="https://github.com/user-attachments/assets/8f8217aa-1368-4be7-8eb2-e17a03d9f5ef" />
 
 Có thể thấy, vẫn sử dụng lại state ban đầu ở ví dụ trên, lần này ta thay đổi hệ số đi thì ta đã thu được chu kì là $15$. Đó cũng chính là chu kì tối đa của một LFSR dài $4$ bits là : $2^4-1=15$
 
@@ -400,13 +396,7 @@ Có thể thấy, chu kì của LFSR $4$-bits này sẽ luôn luôn là $15$ v�
 
 Ở ví dụ đầu tiên, ta có vector hệ số là $(c_3,c_2,c_1,c_0)=(1,1,1,1)$. Với hệ số này, chu kì của LFSR sẽ luôn luôn là $5$ bất kể đầu vào có là gì đi nữa. Minh họa :
 
-![{121EBB4B-2D18-4CE5-8A17-7A39500F5EE1}](https://hackmd.io/_uploads/BkEEWIn4xg.png)
-
-
-
-
-
-
+<img width="933" height="601" alt="{692F6542-ADC9-43AF-9CB5-74810D170BFD}" src="https://github.com/user-attachments/assets/7f066669-89f3-44ce-bd4c-47832e36a54a" />
 
 Như vậy, dựa vào lý thuyết về các hệ số và giá trị state như ở trên, ta sẽ rút ra được một định nghĩa về Đa thức đặc trưng (Characteristic Polynomial) như sau : 
 
